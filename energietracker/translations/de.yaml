@@ -1,0 +1,5 @@
+network:
+  80/tcp: >-
+    Direkter Zugriff ohne Home Assistant (für die Seitenleiste nicht nötig).
+    Nur für Geräte, die Zählerstände schicken oder den Kalender abonnieren;
+    sie brauchen einen Token bzw. API-Schlüssel.

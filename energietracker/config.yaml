@@ -1,0 +1,62 @@
+# Energietracker as a Home Assistant app (formerly "add-on").
+# Reference: https://developers.home-assistant.io/docs/apps/configuration
+#
+# The app runs the regular Energietracker image from GHCR, unchanged. The
+# version below must match an image tag; it moves with every Energietracker
+# release.
+name: Energietracker
+version: "3.5.0"
+slug: energietracker
+description: >-
+  Your home's energy costs: meter readings in, refund or back-payment,
+  tariff check and notice deadlines out. Self-hosted, no cloud.
+url: https://github.com/Bingerminger/energietracker
+# Multi-arch manifest (linux/amd64 + linux/arm64); the Supervisor pulls the
+# platform of the host, no {arch} placeholder needed.
+image: ghcr.io/bingerminger/energietracker
+arch:
+  - aarch64
+  - amd64
+# New in Home Assistant OS; marked experimental until the first reports are in.
+stage: experimental
+# The image brings its own init: the entrypoint hands over to supervisord as
+# PID 1, which keeps nginx and php-fpm running and reaps their children.
+init: false
+
+# Sidebar via Ingress. nginx in the image listens on port 80.
+ingress: true
+ingress_port: 80
+# Backups and receipts can be larger than 16 MiB; without streaming, Ingress
+# would cut uploads at that size.
+ingress_stream: true
+panel_icon: mdi:home-lightning-bolt-outline
+panel_title: Energietracker
+# Everyone in the household with a Home Assistant login may open it; the
+# first person to open it manages the installation, everyone after that is a
+# member (roles can be changed in the app).
+panel_admin: false
+
+# Direct access is off by default. Enable it under Network if devices outside
+# Home Assistant need to reach the app (push, calendar subscription).
+ports:
+  80/tcp: null
+
+# Settings the regular image reads from its environment:
+# - data in /data, which the Supervisor maps to the app's own storage and
+#   includes in Home Assistant backups (also the image default);
+# - sign-in through Home Assistant: only requests from the Supervisor's
+#   Ingress proxy (172.30.32.2) may name a person (X-Remote-User-*); any other
+#   request needs a token or an API key.
+environment:
+  ET_DATA_DIR: "/data"
+  ET_AUTH: "proxy"
+  ET_TRUSTED_PROXIES: "172.30.32.2"
+
+# Hot backups are fine: every data file is written to a temporary file and
+# renamed. Leftovers of an interrupted write stay out of the backup.
+backup_exclude:
+  - "*.tmp.*"
+
+# Health: the image has a Docker HEALTHCHECK on /api/health, which the
+# Supervisor watches (the `watchdog` key is obsolete). No access to the
+# Supervisor or Home Assistant APIs is requested.

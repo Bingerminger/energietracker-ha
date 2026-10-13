@@ -1,0 +1,5 @@
+network:
+  80/tcp: >-
+    Direct access without Home Assistant (not needed for the sidebar). Only
+    for devices that push readings or subscribe to the calendar; they need a
+    token or an API key.

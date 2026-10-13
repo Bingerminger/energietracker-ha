@@ -1,0 +1,31 @@
+name: Lint
+
+# Checks the app configuration against the schema Home Assistant apps use
+# (frenck/action-app-linter, formerly action-addon-linter). Actions are
+# pinned to a commit; Dependabot proposes updates.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # weekly: new schema rules (deprecations) show up without a commit
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint app configuration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Home Assistant app linter
+        uses: frenck/action-app-linter@b9cfd1bc62ba60d2c4fc96317b5f7ada5923f4a7 # v2.21.1
+        with:
+          path: "./energietracker"
