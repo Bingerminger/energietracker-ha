@@ -5,7 +5,7 @@
 # version below must match an image tag; it moves with every Energietracker
 # release.
 name: Energietracker
-version: "3.5.0"
+version: "3.5.1"
 slug: energietracker
 description: >-
   Your home's energy costs: meter readings in, refund or back-payment,

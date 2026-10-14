@@ -4,6 +4,11 @@ The app version is the Energietracker version it runs. What changed in the
 program itself is in the
 [Energietracker changelog](https://github.com/Bingerminger/energietracker/blob/main/CHANGELOG.en.md).
 
+## 3.5.1
+
+- Runs Energietracker 3.5.1 (`ghcr.io/bingerminger/energietracker:3.5.1`). What changed:
+  [release notes](https://github.com/Bingerminger/energietracker/releases/tag/v3.5.1).
+
 ## 3.5.0
 
 - First release as a Home Assistant app: sidebar via Ingress, sign-in with
