@@ -55,6 +55,15 @@ mit Docker daneben betreiben:
 
 Fragen und Fehler: [Issues des Hauptprojekts](https://github.com/Bingerminger/energietracker/issues).
 
+## Support · Unterstützen
+
+Energietracker is free and stays free. If it helps you, you can support its
+development: [buymeacoffee.com/bingerminger](https://buymeacoffee.com/bingerminger).
+
+Der Energietracker ist kostenlos und bleibt es. Wenn er dir hilft, kannst du
+die Weiterentwicklung unterstützen:
+[buymeacoffee.com/bingerminger](https://buymeacoffee.com/bingerminger).
+
 ## License · Lizenz
 
 GNU Affero General Public License v3.0 or later, like Energietracker itself
