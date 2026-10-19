@@ -10,6 +10,10 @@ Self-hosted, no cloud, open source (AGPL).
 - Opens in the sidebar; Home Assistant users sign in automatically.
 - Readings by hand, by CSV or pushed from Home Assistant; values such as the
   balance and the forecast go back as sensors.
+- “What if?”: see at once what a cold winter, insulation or a switch costs or
+  saves; evaluations by calendar year or by billing year, as on your bill.
+- Flexibility with a traffic light: when power is cheap, when the sun shines,
+  and how many euros a year shifting each appliance brings.
 - Nine utilities: gas, electricity, water, district heating, heating oil,
   pellets, PV feed-in, PV generation and heat; seven languages.
 
