@@ -4,6 +4,11 @@ The app version is the Energietracker version it runs. What changed in the
 program itself is in the
 [Energietracker changelog](https://github.com/Bingerminger/energietracker/blob/main/CHANGELOG.en.md).
 
+## 3.7.0
+
+- Runs Energietracker 3.7.0 (`ghcr.io/bingerminger/energietracker:3.7.0`). What changed:
+  [release notes](https://github.com/Bingerminger/energietracker/releases/tag/v3.7.0).
+
 ## 3.6.0
 
 - Runs Energietracker 3.6.0 (`ghcr.io/bingerminger/energietracker:3.6.0`). What changed:
