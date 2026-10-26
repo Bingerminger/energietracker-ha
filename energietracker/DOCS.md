@@ -53,6 +53,45 @@ shows the templates with the right address, which looks like
 The step-by-step guide is in the handbook:
 [Connecting Energietracker with Home Assistant](https://github.com/Bingerminger/energietracker/blob/main/docs/en/anleitungen/home-assistant.md).
 
+## Notifications (since Energietracker 3.9.0)
+
+Energietracker can report to Home Assistant by itself: appointments and
+deadlines when they are due, warnings, and new documents in the inbox. In the
+app no setup is needed: open **Settings → Integrations → 🔔 Notifications to
+Home Assistant**, keep **Through the Supervisor**, switch on **Send
+notifications** and press **Send a test message**.
+
+- By default the message appears under **Notifications** in Home Assistant
+  (`persistent_notification.create`). For your phone enter
+  `notify.mobile_app_<device>` as the action.
+- Each message comes only once. The daily check runs from the hour you choose
+  (default 8 o’clock); new documents are reported right after they arrive.
+- For this the app may call Home Assistant through the Supervisor
+  (`homeassistant_api: true`). Through that access an app acts as an
+  administrator of Home Assistant; Energietracker only calls the notification
+  action set on the card, and only when it is switched on.
+- A “To do” sensor (number of due items and the next one) is in the handbook:
+  [“To do” sensor](https://github.com/Bingerminger/energietracker/blob/main/docs/en/anleitungen/home-assistant.md#to-do-sensor-v390).
+
+## Inbox folder in /share (since Energietracker 3.9.0)
+
+The app mounts Home Assistant’s `/share` folder. Its watched inbox folder is
+`/share/energietracker/posteingang`; the app creates it at start. With the
+**Samba share** app it is on your network as
+`\\<Home Assistant address>\share\energietracker\posteingang`.
+
+- Put a PDF there: within five minutes at most it is in the inbox (the app
+  reads the folder after requests; the health check asks every 30 seconds).
+- Afterwards the file moves to `übernommen/`, a refused one (not a PDF, larger
+  than 10 MB) to `fehler/`. The folder names are the same in every language.
+- Files younger than 10 seconds wait (a copy might still be running), at most
+  20 files per run.
+
+Supplier mail by email works through Home Assistant’s IMAP integration; the
+template is in the handbook
+([Inbox → by email](https://github.com/Bingerminger/energietracker/blob/main/docs/en/anleitungen/posteingang.md#by-email-via-home-assistant)).
+It has not been tested in a running Home Assistant yet; reports are welcome.
+
 ## Your data and backups
 
 - The data lives in the app's own storage (`/data` inside the container).
@@ -61,7 +100,11 @@ The step-by-step guide is in the handbook:
   backup** saves everything in one file; snapshots are kept before risky
   steps.
 - Sign-in data (persons, token, keys) is not part of the JSON backup, only of
-  the Home Assistant backup.
+  the Home Assistant backup. The same goes for a webhook ID or token of the
+  notifications (3.9.0).
+- The inbox folder in `/share` belongs to Home Assistant’s share, not to the
+  app’s storage; include **Share** in the Home Assistant backup if you want
+  files waiting there to be in it.
 
 ## Moving from a Docker installation
 
@@ -102,9 +145,12 @@ address.
 | Settings via environment | fixed by the app | all `ET_*` variables |
 | Logs | **Log** tab of the app | `docker logs` |
 
-The app sets `ET_DATA_DIR=/data`, `ET_AUTH=proxy` and
-`ET_TRUSTED_PROXIES=172.30.32.2`. It asks for no access to the Supervisor or
-Home Assistant APIs.
+The app sets `ET_DATA_DIR=/data`, `ET_AUTH=proxy`,
+`ET_TRUSTED_PROXIES=172.30.32.2` and (3.9.0) `ET_INBOX_DIR=/share/energietracker/posteingang`.
+Since 3.9.0 it asks for access to the Home Assistant API through the
+Supervisor (`homeassistant_api`, for the notifications) and mounts `/share`
+writable (for the inbox folder). It asks for no access to the Supervisor API
+itself.
 
 ## Health and troubleshooting
 
@@ -115,6 +161,8 @@ Home Assistant APIs.
   app.
 - **Sensors `unknown`:** read key missing, or the key in the sensor does not
   match the meter.
+- **Files stay in the inbox folder (3.9.0):** look at the **Log** tab; the app
+  needs the folder writable, it moves every file it has read.
 
 More in the handbook:
 [Troubleshooting](https://github.com/Bingerminger/energietracker/blob/main/docs/en/betrieb/fehlersuche.md).

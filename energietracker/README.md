@@ -10,6 +10,8 @@ Self-hosted, no cloud, open source (AGPL).
 - Opens in the sidebar; Home Assistant users sign in automatically.
 - Readings by hand, by CSV or pushed from Home Assistant; values such as the
   balance and the forecast go back as sensors.
+- Reports due appointments, deadlines, warnings and new documents to Home
+  Assistant by itself, without setup; supplier mail as PDF into `/share`.
 - “What if?”: see at once what a cold winter, insulation or a switch costs or
   saves; evaluations by calendar year or by billing year, as on your bill.
 - Flexibility with a traffic light: when power is cheap, when the sun shines,

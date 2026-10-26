@@ -41,16 +41,33 @@ panel_admin: false
 ports:
   80/tcp: null
 
+# Since Energietracker 3.9.0: notifications to Home Assistant through the
+# Supervisor's proxy (http://supervisor/core/api, token in SUPERVISOR_TOKEN).
+# Through the proxy the app acts as an administrator of Home Assistant; it
+# only calls the notification action chosen in its settings (default
+# persistent_notification.create), and only once switched on there.
+homeassistant_api: true
+
+# Since Energietracker 3.9.0: the watched inbox folder lives in /share, so it
+# can be reached through the Samba share app. Writable, because the app moves
+# every file it has read to übernommen/ (or fehler/).
+map:
+  - type: share
+    read_only: false
+
 # Settings the regular image reads from its environment:
 # - data in /data, which the Supervisor maps to the app's own storage and
 #   includes in Home Assistant backups (also the image default);
 # - sign-in through Home Assistant: only requests from the Supervisor's
 #   Ingress proxy (172.30.32.2) may name a person (X-Remote-User-*); any other
-#   request needs a token or an API key.
+#   request needs a token or an API key;
+# - the watched inbox folder (3.9.0); the image creates it at start and hands
+#   it to the web server user, only the folder itself, not its files.
 environment:
   ET_DATA_DIR: "/data"
   ET_AUTH: "proxy"
   ET_TRUSTED_PROXIES: "172.30.32.2"
+  ET_INBOX_DIR: "/share/energietracker/posteingang"
 
 # Hot backups are fine: every data file is written to a temporary file and
 # renamed. Leftovers of an interrupted write stay out of the backup.
@@ -58,5 +75,7 @@ backup_exclude:
   - "*.tmp.*"
 
 # Health: the image has a Docker HEALTHCHECK on /api/health, which the
-# Supervisor watches (the `watchdog` key is obsolete). No access to the
-# Supervisor or Home Assistant APIs is requested.
+# Supervisor watches (the `watchdog` key is obsolete). The same check, every
+# 30 seconds, also triggers the app's daily notification check and the
+# watched folder (the image has no scheduler of its own). No access to the
+# Supervisor API itself (hassio_api) is requested.
