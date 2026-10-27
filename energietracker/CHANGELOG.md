@@ -4,6 +4,16 @@ The app version is the Energietracker version it runs. What changed in the
 program itself is in the
 [Energietracker changelog](https://github.com/Bingerminger/energietracker/blob/main/CHANGELOG.en.md).
 
+## 3.9.0
+
+- Runs Energietracker 3.9.0 (`ghcr.io/bingerminger/energietracker:3.9.0`). What changed:
+  [release notes](https://github.com/Bingerminger/energietracker/releases/tag/v3.9.0).
+- **New permissions:** the app now asks for access to the Home Assistant API, so
+  Energietracker can send notifications through the Supervisor (only after you
+  switch them on under Settings → Integrations), and for `/share` with write
+  access, where it watches the inbox folder `/share/energietracker/posteingang`
+  (drop a PDF there, for example through the Samba share app).
+
 ## 3.7.0
 
 - Runs Energietracker 3.7.0 (`ghcr.io/bingerminger/energietracker:3.7.0`). What changed:
