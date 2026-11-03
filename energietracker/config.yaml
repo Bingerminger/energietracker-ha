@@ -19,8 +19,9 @@ arch:
   - amd64
 # New in Home Assistant OS; marked experimental until the first reports are in.
 stage: experimental
-# The image brings its own init: the entrypoint hands over to supervisord as
-# PID 1, which keeps nginx and php-fpm running and reaps their children.
+# The image brings its own init: since 3.10.0 a small start script runs as
+# PID 1, starts nginx and php-fpm, reaps their children and ends the container
+# when one of them stops (the watchdog then restarts the app).
 init: false
 
 # Sidebar via Ingress. nginx in the image listens on port 80.

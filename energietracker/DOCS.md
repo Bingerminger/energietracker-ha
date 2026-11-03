@@ -155,7 +155,9 @@ itself.
 ## Health and troubleshooting
 
 - The image checks itself (`/api/health`). With **Watchdog** switched on
-  (Info tab), Home Assistant restarts the app when that check fails.
+  (Info tab), Home Assistant restarts the app when that check fails. Since
+  3.10.0 this is also the way back when nginx or php-fpm stops: the container
+  then ends, and without Watchdog the app stays off until you start it again.
 - **The app does not start or shows "unhealthy":** look at the **Log** tab.
 - **`401` on push:** the token is missing or wrong; create a new one in the
   app.
