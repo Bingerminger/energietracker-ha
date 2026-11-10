@@ -1,28 +1,28 @@
 # Energietracker
 
-Your home's energy costs in Home Assistant: meter readings in; refund or
+**Your home's energy costs in Home Assistant:** meter readings in; refund or
 back-payment, tariff check, notice deadlines and a forecast out.
 Self-hosted, no cloud, open source (AGPL).
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 
-- Opens in the sidebar; Home Assistant users sign in automatically.
-- Readings by hand, by CSV or pushed from Home Assistant; values such as the
-  balance and the forecast go back as sensors.
+- **Opens in the sidebar;** Home Assistant users sign in automatically.
+- **Readings by hand, by CSV or pushed from Home Assistant;** values such as
+  the balance and the forecast go back as sensors.
 - **Sensors without YAML:** the integration from the Marketplace or HACS,
   [energietracker-integration](https://github.com/Bingerminger/energietracker-integration)
   creates them.
 - **Your AI in the home network (new in 3.12):** an AI program reaches the
   interface only through a port you open under Configuration → Network, not
   through Ingress. Off by default.
-- Reports due appointments, deadlines, warnings and new documents to Home
-  Assistant by itself, without setup; supplier mail as PDF into `/share`.
-- “What if?”: see at once what a cold winter, insulation or a switch costs or
-  saves; evaluations by calendar year or by billing year, as on your bill.
-- Flexibility with a traffic light: when power is cheap, when the sun shines,
-  and how many euros a year shifting each appliance brings.
-- Nine utilities: gas, electricity, water, district heating, heating oil,
+- **Reports to Home Assistant by itself:** due appointments, deadlines,
+  warnings and new documents, without setup; supplier mail as PDF into `/share`.
+- **“What if?”:** see at once what a cold winter, insulation or a switch costs
+  or saves; evaluations by calendar year or by billing year, as on your bill.
+- **Flexibility with a traffic light:** when power is cheap, when the sun
+  shines, and how many euros a year shifting each appliance brings.
+- **Nine utilities:** gas, electricity, water, district heating, heating oil,
   pellets, PV feed-in, PV generation and heat; seven languages.
 
 Documentation: see the **Documentation** tab.

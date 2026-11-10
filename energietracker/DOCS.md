@@ -1,6 +1,6 @@
 # Energietracker
 
-Energietracker keeps track of your home's energy and water costs: meter
+**Energietracker keeps track of your home's energy and water costs:** meter
 readings in; refund or back-payment, tariff check, notice deadlines and a
 forecast out. This app runs the regular Energietracker image
 (`ghcr.io/bingerminger/energietracker`) inside Home Assistant and puts it in
@@ -51,10 +51,12 @@ Because sign-in is on:
   **Connect**);
 - the sensors (balance, forecast) need a **read key** (**Connections → Keys**).
 
-**Sensors without YAML:** as an integration through the Marketplace (Home Assistant 2026.11 or later) or HACS,
-[Bingerminger/energietracker-integration](https://github.com/Bingerminger/energietracker-integration).
-It asks for the address shown under **Connections → Home Assistant** and the
-read key.
+**Sensors without YAML:** with the integration
+[Bingerminger/energietracker-integration](https://github.com/Bingerminger/energietracker-integration),
+a custom repository: from Home Assistant 2026.11 in the built-in Marketplace,
+which needs a GitHub connection once for custom repositories; up to 2026.10
+in HACS. It asks for the address shown under **Connections → Home Assistant**
+and the read key.
 
 The step-by-step guide is in the handbook:
 [Connecting Energietracker with Home Assistant](https://github.com/Bingerminger/energietracker/blob/main/docs/en/anleitungen/home-assistant.md).
@@ -81,8 +83,8 @@ message**.
 
 ## Inbox folder in /share (since Energietracker 3.9.0)
 
-The app mounts Home Assistant’s `/share` folder. Its watched inbox folder is
-`/share/energietracker/posteingang`; the app creates it at start. With the
+The app mounts Home Assistant’s `/share` folder. **Its watched inbox folder is
+`/share/energietracker/posteingang`;** the app creates it at start. With the
 **Samba share** app it is on your network as
 `\\<Home Assistant address>\share\energietracker\posteingang`.
 
@@ -101,12 +103,12 @@ It has not been tested in a running Home Assistant yet; reports are welcome.
 ## Your data and backups
 
 - The data lives in the app's own storage (`/data` inside the container).
-  Home Assistant backups include it; restoring such a backup brings it back.
-- Inside the app, **Settings → Data and backup → 💾 Backup & restore →
+  **Home Assistant backups include it;** restoring such a backup brings it back.
+- Inside the app, **Settings → Data and backup → Backup & restore →
   Download JSON backup** saves everything in one file; snapshots are kept
   before risky steps.
-- Sign-in data (persons, token, keys) is not part of the JSON backup, only of
-  the Home Assistant backup. The same goes for a webhook ID or token of the
+- **Sign-in data (persons, token, keys) is not part of the JSON backup,** only
+  of the Home Assistant backup. The same goes for a webhook ID or token of the
   notifications (3.9.0).
 - The inbox folder in `/share` belongs to Home Assistant’s share, not to the
   app’s storage; include **Share** in the Home Assistant backup if you want
@@ -114,17 +116,17 @@ It has not been tested in a running Home Assistant yet; reports are welcome.
 
 ## Moving from a Docker installation
 
-1. In the old installation: **Settings → Data and backup → 💾 Backup &
+1. In the old installation: **Settings → Data and backup → Backup &
    restore → Download JSON backup** (up to 3.11: **Settings → Data**).
 2. In the app: same card, **Import backup…** with that file. Uploads through
    Ingress are streamed, so large backups with receipts work (up to 256 MB).
 3. Create a new token under **Connections → Home Assistant** (and a read key
    under **Connections → Keys**) and change the address in Home Assistant's
-   `rest_command` and sensors (or in the HACS integration) to the one the app
+   `rest_command` and sensors (or in the integration) to the one the app
    shows.
 4. Stop the old installation once everything is there.
 
-The app must not be older than the installation the backup comes from.
+**The app must not be older than the installation the backup comes from.**
 
 ## Direct access (optional)
 

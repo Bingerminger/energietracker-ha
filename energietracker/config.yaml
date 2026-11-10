@@ -38,7 +38,7 @@ panel_title: Energietracker
 panel_admin: false
 
 # Direct access is off by default. Enable it under Network if devices outside
-# Home Assistant need to reach the app (push, calendar subscription).
+# Home Assistant need to reach the app (push, calendar subscription, AI over MCP).
 ports:
   80/tcp: null
 
