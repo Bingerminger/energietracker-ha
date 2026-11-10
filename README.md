@@ -7,7 +7,7 @@ contracts and bills, sign-in with your Home Assistant users, data in Home
 Assistant backups.
 
 - **Sensors without YAML:** the HACS integration
-  [energietracker-hacs](https://github.com/Bingerminger/energietracker-hacs)
+  [energietracker-integration](https://github.com/Bingerminger/energietracker-integration)
   creates them.
 - **Your AI in the home network (new in 3.12):** an AI program reaches the
   interface only through a port you open under Configuration → Network, not
@@ -48,7 +48,7 @@ Verträge und Rechnungen deines Zuhauses, Anmeldung mit deinen
 Home-Assistant-Benutzern, Daten in den Sicherungen von Home Assistant.
 
 - **Sensoren ohne YAML:** die HACS-Integration
-  [energietracker-hacs](https://github.com/Bingerminger/energietracker-hacs)
+  [energietracker-integration](https://github.com/Bingerminger/energietracker-integration)
   legt sie an.
 - **Deine KI im Heimnetz (neu in 3.12):** Ein KI-Programm erreicht die
   Schnittstelle nur über einen Port, den du unter Konfiguration → Netzwerk

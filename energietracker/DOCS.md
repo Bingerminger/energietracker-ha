@@ -52,7 +52,7 @@ Because sign-in is on:
 - the sensors (balance, forecast) need a **read key** (**Connections → Keys**).
 
 **Sensors without YAML:** as an integration through HACS,
-[Bingerminger/energietracker-hacs](https://github.com/Bingerminger/energietracker-hacs).
+[Bingerminger/energietracker-integration](https://github.com/Bingerminger/energietracker-integration).
 It asks for the address shown under **Connections → Home Assistant** and the
 read key.
 
