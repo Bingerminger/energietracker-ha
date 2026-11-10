@@ -10,7 +10,7 @@ Self-hosted, no cloud, open source (AGPL).
 - Opens in the sidebar; Home Assistant users sign in automatically.
 - Readings by hand, by CSV or pushed from Home Assistant; values such as the
   balance and the forecast go back as sensors.
-- **Sensors without YAML:** the HACS integration
+- **Sensors without YAML:** the integration from the Marketplace or HACS,
   [energietracker-integration](https://github.com/Bingerminger/energietracker-integration)
   creates them.
 - **Your AI in the home network (new in 3.12):** an AI program reaches the

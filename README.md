@@ -6,7 +6,7 @@
 contracts and bills, sign-in with your Home Assistant users, data in Home
 Assistant backups.
 
-- **Sensors without YAML:** the HACS integration
+- **Sensors without YAML:** the integration from the Marketplace or HACS,
   [energietracker-integration](https://github.com/Bingerminger/energietracker-integration)
   creates them.
 - **Your AI in the home network (new in 3.12):** an AI program reaches the
@@ -47,7 +47,7 @@ Questions and bugs: [issues of the main project](https://github.com/Bingerminger
 Verträge und Rechnungen deines Zuhauses, Anmeldung mit deinen
 Home-Assistant-Benutzern, Daten in den Sicherungen von Home Assistant.
 
-- **Sensoren ohne YAML:** die HACS-Integration
+- **Sensoren ohne YAML:** die Integration aus dem Marketplace oder HACS,
   [energietracker-integration](https://github.com/Bingerminger/energietracker-integration)
   legt sie an.
 - **Deine KI im Heimnetz (neu in 3.12):** Ein KI-Programm erreicht die
