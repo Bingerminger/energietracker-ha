@@ -10,6 +10,12 @@ Self-hosted, no cloud, open source (AGPL).
 - Opens in the sidebar; Home Assistant users sign in automatically.
 - Readings by hand, by CSV or pushed from Home Assistant; values such as the
   balance and the forecast go back as sensors.
+- **Sensors without YAML:** the HACS integration
+  [energietracker-hacs](https://github.com/Bingerminger/energietracker-hacs)
+  creates them.
+- **Your AI in the home network (new in 3.12):** an AI program reaches the
+  interface only through a port you open under Configuration → Network, not
+  through Ingress. Off by default.
 - Reports due appointments, deadlines, warnings and new documents to Home
   Assistant by itself, without setup; supplier mail as PDF into `/share`.
 - “What if?”: see at once what a cold winter, insulation or a switch costs or

@@ -31,7 +31,7 @@ user who opens it:
 
 - The **first** person to open the app manages the installation; everyone
   after that becomes a **member**. Roles can be changed under
-  **Settings → Access**.
+  **Settings → Access and security**.
 - A person is tracked by the Home Assistant user ID. Renaming the user in
   Home Assistant does not create a new person.
 - Every Home Assistant user sees the sidebar entry and can open the app.
@@ -42,13 +42,19 @@ API key, see below.
 
 ## Sending readings from Home Assistant
 
-Home Assistant reaches the app inside its own network, without Ingress. On
-the card **Settings → Integrations → 🏠 Home Assistant integration** the app
-shows the templates with the right address, which looks like
-`http://<host name of the app>/api.php/api/ingest`. Because sign-in is on:
+Home Assistant reaches the app inside its own network, without Ingress. Under
+**Connections → Home Assistant** the app shows the templates with the right
+address, which looks like `http://<host name of the app>/api.php/api/ingest`.
+Because sign-in is on:
 
-- the push (`rest_command`) needs a **token**; create it on the same card;
-- the sensors (balance, forecast) need a **read key**.
+- the push (`rest_command`) needs a **token**; create it there (tab
+  **Connect**);
+- the sensors (balance, forecast) need a **read key** (**Connections → Keys**).
+
+**Sensors without YAML:** as an integration through HACS,
+[Bingerminger/energietracker-hacs](https://github.com/Bingerminger/energietracker-hacs).
+It asks for the address shown under **Connections → Home Assistant** and the
+read key.
 
 The step-by-step guide is in the handbook:
 [Connecting Energietracker with Home Assistant](https://github.com/Bingerminger/energietracker/blob/main/docs/en/anleitungen/home-assistant.md).
@@ -57,9 +63,9 @@ The step-by-step guide is in the handbook:
 
 Energietracker can report to Home Assistant by itself: appointments and
 deadlines when they are due, warnings, and new documents in the inbox. In the
-app no setup is needed: open **Settings → Integrations → 🔔 Notifications to
-Home Assistant**, keep **Through the Supervisor**, switch on **Send
-notifications** and press **Send a test message**.
+app no setup is needed: open **Connections → Notifications**, keep **Through
+the Supervisor**, switch on **Send notifications** and press **Send a test
+message**.
 
 - By default the message appears under **Notifications** in Home Assistant
   (`persistent_notification.create`). For your phone enter
@@ -96,9 +102,9 @@ It has not been tested in a running Home Assistant yet; reports are welcome.
 
 - The data lives in the app's own storage (`/data` inside the container).
   Home Assistant backups include it; restoring such a backup brings it back.
-- Inside the app, **Settings → Data → 💾 Backup & restore → Download JSON
-  backup** saves everything in one file; snapshots are kept before risky
-  steps.
+- Inside the app, **Settings → Data and backup → 💾 Backup & restore →
+  Download JSON backup** saves everything in one file; snapshots are kept
+  before risky steps.
 - Sign-in data (persons, token, keys) is not part of the JSON backup, only of
   the Home Assistant backup. The same goes for a webhook ID or token of the
   notifications (3.9.0).
@@ -108,13 +114,14 @@ It has not been tested in a running Home Assistant yet; reports are welcome.
 
 ## Moving from a Docker installation
 
-1. In the old installation: **Settings → Data → 💾 Backup & restore →
-   Download JSON backup**.
+1. In the old installation: **Settings → Data and backup → 💾 Backup &
+   restore → Download JSON backup** (up to 3.11: **Settings → Data**).
 2. In the app: same card, **Import backup…** with that file. Uploads through
    Ingress are streamed, so large backups with receipts work (up to 256 MB).
-3. Create a new token (and read key) on the card **🏠 Home Assistant
-   integration** and change the address in Home Assistant's `rest_command`
-   and sensors to the one the app shows.
+3. Create a new token under **Connections → Home Assistant** (and a read key
+   under **Connections → Keys**) and change the address in Home Assistant's
+   `rest_command` and sensors (or in the HACS integration) to the one the app
+   shows.
 4. Stop the old installation once everything is there.
 
 The app must not be older than the installation the backup comes from.
@@ -122,12 +129,18 @@ The app must not be older than the installation the backup comes from.
 ## Direct access (optional)
 
 The port is off by default. If a device outside Home Assistant should reach
-the app (a push from another machine, a calendar subscription on your phone),
-open the app's **Configuration → Network**, **Show disabled ports** and enter
-a free port, for example `8095`. The address is then
+the app (a push from another machine, a calendar subscription on your phone,
+an AI program), open the app's **Configuration → Network**, **Show disabled
+ports** and enter a free port, for example `8095`. The address is then
 `http://<Home Assistant address>:8095`. Without Home Assistant in front, the
 app knows no person there: the push needs its token, the calendar link its
 key. The interface itself stays in the sidebar.
+
+**Your AI in the home network (since 3.12):** an AI program reaches the
+interface (`/api/mcp`) only through this port, not through Ingress. It is off
+by default; an administrator switches it on under **Connections → AI
+assistants (MCP)** and creates an AI key there. Guide:
+[Connect an AI assistant (MCP)](https://github.com/Bingerminger/energietracker/blob/main/docs/en/anleitungen/ki-assistent.md).
 
 **Calendar:** under Ingress, **Subscribe in your calendar** shows the address
 inside Home Assistant (for Home Assistant's own calendar integration). For a

@@ -2,10 +2,19 @@
 
 **English** · [Deutsch](#deutsch)
 
-This repository brings [Energietracker](https://github.com/Bingerminger/energietracker)
-to Home Assistant OS as an app (formerly "add-on"): your home's energy costs
-in the sidebar, sign-in with your Home Assistant users, data in Home
+**Energietracker in your Home Assistant sidebar.** Your home's energy costs,
+contracts and bills, sign-in with your Home Assistant users, data in Home
 Assistant backups.
+
+- **Sensors without YAML:** the HACS integration
+  [energietracker-hacs](https://github.com/Bingerminger/energietracker-hacs)
+  creates them.
+- **Your AI in the home network (new in 3.12):** an AI program reaches the
+  interface only through a port you open under Configuration → Network, not
+  through Ingress. Off by default.
+
+This repository brings [Energietracker](https://github.com/Bingerminger/energietracker)
+to Home Assistant OS as an app (formerly "add-on").
 
 [![Add the repository to your Home Assistant](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FBingerminger%2Fenergietracker-ha)
 
@@ -34,10 +43,19 @@ Questions and bugs: [issues of the main project](https://github.com/Bingerminger
 
 ## Deutsch
 
+**Der Energietracker in der Seitenleiste von Home Assistant.** Energiekosten,
+Verträge und Rechnungen deines Zuhauses, Anmeldung mit deinen
+Home-Assistant-Benutzern, Daten in den Sicherungen von Home Assistant.
+
+- **Sensoren ohne YAML:** die HACS-Integration
+  [energietracker-hacs](https://github.com/Bingerminger/energietracker-hacs)
+  legt sie an.
+- **Deine KI im Heimnetz (neu in 3.12):** Ein KI-Programm erreicht die
+  Schnittstelle nur über einen Port, den du unter Konfiguration → Netzwerk
+  freigibst, nicht über Ingress. Ab Werk aus.
+
 Dieses Repository bringt den [Energietracker](https://github.com/Bingerminger/energietracker)
-als App (früher „Add-on“) in Home Assistant OS: die Energiekosten deines
-Zuhauses in der Seitenleiste, Anmeldung mit deinen Home-Assistant-Benutzern,
-Daten in den Sicherungen von Home Assistant.
+als App (früher „Add-on“) in Home Assistant OS.
 
 [![Repository in Home Assistant hinzufügen](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FBingerminger%2Fenergietracker-ha)
 
